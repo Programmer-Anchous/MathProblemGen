@@ -37,7 +37,7 @@ def multiplication(num, problem) -> str:
     divisors = [(int(num / i), i) for i in range(2, num) if num % i == 0]
     if divisors:
         terms = random.choice(divisors)
-        if "÷" not in problem and "×" not in problem:  # если в строке нет умножения или деления скобки не нужны
+        if "÷" not in problem and "×" not in problem:
             return f"{terms[0]} × {terms[1]}"
         return f"({terms[0]} × {terms[1]})"
     return num
@@ -45,7 +45,7 @@ def multiplication(num, problem) -> str:
 
 def division(num, problem) -> str:
     num1 = random.randrange(2, 11)
-    if "÷" not in problem and "×" not in problem:  # если в строке нет умножения или деления скобки не нужны
+    if "÷" not in problem and "×" not in problem:
         return f"{num * num1} ÷ {num1}"
     return f"({num * num1} ÷ {num1})"
 
