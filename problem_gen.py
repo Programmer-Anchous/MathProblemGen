@@ -1,9 +1,6 @@
 import random
 
 
-# Функция "find_nums" ищет начало и конец всех чисел в строке, пример работы:
-# Ввод: "123 + 4 * 34"
-# Вывод: [[0, 3], [6, 7], [10, 12]]
 def find_nums(problem) -> list:
     if len(problem) == 1:
         return [[0, 1]]
@@ -22,9 +19,6 @@ def find_nums(problem) -> list:
     return nums_in_str
 
 
-# Функция "amount" заменяет число суммой двух других чисел, пример работы:
-# Ввод: 12
-# Вывод: 5 + 7
 def amount(num, problem) -> str:
     if num > 1:
         num1 = random.randrange(1, num)
@@ -33,18 +27,12 @@ def amount(num, problem) -> str:
     return num
 
 
-# Функция "difference" заменяет число разностью двух других чисел, пример работы:
-# Ввод: 12
-# Вывод: 20 - 8
 def difference(num, problem) -> str:
     num1 = random.randrange(num + 1, num * 3)
     num2 = num1 - num
     return f"({num1} - {num2})"
 
 
-# Функция "multiplication" заменяет число произведением двух других чисел, пример работы:
-# Ввод: 12
-# Вывод: 3 × 4
 def multiplication(num, problem) -> str:
     divisors = [(int(num / i), i) for i in range(2, num) if num % i == 0]
     if divisors:
@@ -55,9 +43,6 @@ def multiplication(num, problem) -> str:
     return num
 
 
-# Функция "division" заменяет число деленим двух других чисел, пример работы:
-# Ввод: 12
-# Вывод: 36 ÷ 3
 def division(num, problem) -> str:
     num1 = random.randrange(2, 11)
     if "÷" not in problem and "×" not in problem:  # если в строке нет умножения или деления скобки не нужны
@@ -65,11 +50,6 @@ def division(num, problem) -> str:
     return f"({num * num1} ÷ {num1})"
 
 
-# Функция "make_problem_harder" выбирает рандомное число из примера
-# и заменяет его выводом одной из четырёх функций: amount, difference, multiplication, division
-# пример работы:
-# Ввод: "4 + 3"
-# Вывод: 4 + 21 ÷ 7
 def make_problem_harder(problem, diff=False, mult=False, div=False) -> str:
     functions = [amount]
     if diff:
@@ -88,12 +68,12 @@ def problem_gen(level, diff=False, mult=False, div=False):
     x = new_problem
     for i in range(level * 2):
         new_problem = make_problem_harder(new_problem, diff, mult, div)
-    return f"{new_problem}\nответ: {x}"
+    return f"{new_problem}\nanswer: {x}"
 
 
 if __name__ == "__main__":
-    level = int(input("Введите уровень сложности примера: "))
-    print("Введите операции которые хотите включить (0 или 1 соответственно) в пример в порядке:")
-    print("<разность><умножение><деление>(\"010\") без пробелов:")
+    level = int(input("Problem difficulty level: "))
+    print("Enter the operation you want to include (0 or 1, respectively) in problem in order:")
+    print("<difference><multiplication><division> for example - '010'")
     operations = [bool(int(i)) for i in list(input())]
     print(problem_gen(level, operations[0], operations[1], operations[2]))
