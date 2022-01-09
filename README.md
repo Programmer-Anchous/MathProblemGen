@@ -1,1 +1,1 @@
-# MathProblemGen
+# Generator of math problems.
